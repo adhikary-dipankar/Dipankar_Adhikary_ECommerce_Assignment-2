@@ -5,7 +5,6 @@ using System.Reflection;
 
 namespace ECommerce
 {
-
     public class User
     {
         private Boolean role=true;
