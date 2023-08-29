@@ -14,7 +14,7 @@ namespace ECommerce
 
         public void verifyUser()
         {
-            Console.WriteLine("User "+loginID+" is verified successfullly.");
+            Console.WriteLine("User "+loginID+" is verified successfully.");
         }
     }
 
@@ -29,7 +29,7 @@ namespace ECommerce
 
         public void lonin()
         {
-            Console.WriteLine("The customer "+id+" is loging successfully");
+            Console.WriteLine("The customer "+id+" is logging successfully");
         }
 
         public void register()
@@ -248,7 +248,7 @@ namespace ECommerce
 
             while (ch)
             {
-                Console.WriteLine("Please choose below categories by there index number: \n" +
+                Console.WriteLine("Please choose below categories by their index number: \n" +
                 "\n1. Customer Details 1" +
                 "\n2. Seller Details 2"+
                 "\n3. Shopping Cart 3"+
