@@ -39,7 +39,7 @@ namespace ECommerce
 
         public void updateProfile()
         {
-            Console.WriteLine("The customer "+id+" profile is updated successfully in flieds:" +
+            Console.WriteLine("The customer "+id+" profile is updated successfully in flieds: \n" +
                 "\n1. Adress: "+address+
                 "\n2. E-mail Id: "+email+
                 "\n3. Phone No: "+phone);
@@ -112,7 +112,7 @@ namespace ECommerce
 
         public void placeOrder()
         {
-            Console.WriteLine("The order details are below: " +
+            Console.WriteLine("The order details are below: \n" +
                 "\n1. Customer Id: "+customerID+
                 "\n2. Product Id: "+productID+
                 "\n3. Price: "+totalAmount+
@@ -150,7 +150,7 @@ namespace ECommerce
 
         public void getProductDetails()
         {
-            Console.WriteLine("Getting the selected Product details: " +
+            Console.WriteLine("Getting the selected Product details: \n" +
                 "\n1. Product Name: "+productName+
                 "\n2. Product Id: "+productID+
                 "\n3. Product Price: "+productCost+
@@ -189,7 +189,7 @@ namespace ECommerce
 
         public void getPaymentDetails()
         {
-            Console.WriteLine("The payment detail is given below: "+
+            Console.WriteLine("The payment detail is given below: \n"+
                 "\n1. Payment Id: "+ID+
                 "\n2. Order Id: "+orderID+
                 "\n3. Transaction Id: "+details+
@@ -226,7 +226,7 @@ namespace ECommerce
         public void updateProfile()
         {
             Console.WriteLine("The seller's profile is updated successfully and updated" +
-                " details are: "+
+                " details are: \n"+
                 "\n1. Seller Id: "+id+
                 "\n2. Address:"+address+
                 "\n3. E-mail Id: "+email+
@@ -248,7 +248,7 @@ namespace ECommerce
 
             while (ch)
             {
-                Console.WriteLine("Please choose below categories by there index number: " +
+                Console.WriteLine("Please choose below categories by there index number: \n" +
                 "\n1. Customer Details 1" +
                 "\n2. Seller Details 2"+
                 "\n3. Shopping Cart 3"+
@@ -323,8 +323,8 @@ namespace ECommerce
                 {
                     Console.WriteLine("Thank You for using our E_Commerce site" +
                         " for your daily requierments.\nYou are logout from our site now, " +
-                        "We hope that you enjoying our services" +
-                        ".\nVisit once againg, thank You.");
+                        "We hope that you are enjoying our products and services." +
+                        ".\nVisit again, have a good day.\nThank You.");
                     ch = false;
 
                 }
