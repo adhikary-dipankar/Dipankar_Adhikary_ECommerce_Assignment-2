@@ -337,165 +337,165 @@ namespace ECommerce
 
 
 
-mono /tmp/gYMELHjZzS.exe
-User User_101_New is verified successfully.
-You are successfully login to the E_commerce.
 
-Please choose below categories by their index number: 
+// User User_101_New is verified successfully.
+// You are successfully logged in to the E_commerce.
 
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-1
-The customer User_101 is logging successfully
-The customer User_101 is registered successfully.
-The customer User_101 profile is updated successfully in flieds: 
+// Please choose the below categories by their index number: 
 
-1. Adress: 20 No. Road, Chakdaha-Bongaon, North 24 Parganas, West Bengal-743262
-2. E-mail Id: user101@gmail.com
-3. Phone No: 9087654321
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 1
+// The customer User_101 is logging in successfully
+// The customer User_101 is registered successfully.
+// The customer User_101 profile is updated successfully in fields: 
 
-
-Please choose below categories by their index number: 
-
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-2
-The seller Seller_101 is loging successfully.
-The seller Seller_101 is registered successfully.
-The seller's profile is updated successfully and updated details are: 
-
-1. Seller Id: Seller_101
-2. Address:MG street, Block-88, Kolkata-91
-3. E-mail Id: CollegeBookStall@gmail.com
-4. Phone No: 1800000888
-5. Seller rating: 5
+// 1. Address: 20 No. Road, Chakdaha-Bongaon, North 24 Parganas, West Bengal-743262
+// 2. E-mail Id: user101@gmail.com
+// 3. Phone No: 9087654321
 
 
-Please choose below categories by their index number: 
+// Please choose the below categories by their index number: 
 
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-3
-The item is added to the cart.
-The item is recently check out by you.
-The cart details are showing now....
-The quantity is added to the cart.
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 2
+// The seller Seller_101 is loging successfully.
+// The seller Seller_101 is registered successfully.
+// The seller's profile is updated successfully and updated details are: 
 
-
-Please choose below categories by their index number: 
-
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-4
-The order details are below: 
-
-1. Customer Id: Customer_101
-2. Product Id: Product_101
-3. Price: 1999
-4. Seller Id: Seller_101
-5. Order Date: 08/29/2023 08:40:41
-6. Address: 20 No. Road, Chakdaha-Bongaon, North 24 Parganas, West Bengal-743262
-7. Delivery Status: Delivered
-8. Delivery Date: 08/29/2023 08:40:41
+// 1. Seller Id: Seller_101
+// 2. Address:MG street, Block-88, Kolkata-91
+// 3. E-mail Id: CollegeBookStall@gmail.com
+// 4. Phone No: 1800000888
+// 5. Seller rating: 5
 
 
-Please choose below categories by their index number: 
+// Please choose below categories by their index number: 
 
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-5
-ERROR!
-The item '.NET Basic Programming with Microsoft.' with product Id Product_101 is added to cart successfully.
-The item '.NET Basic Programming with Microsoft.' is sold successfully.
-Getting the selected Product details: 
-
-1. Product Name: .NET Basic Programming with Microsoft.
-2. Product Id: Product_101
-3. Product Price: 1999
-4. Seller Id: Seller_101
-5. Order posted date: 08/29/2023 08:40:46ERROR!
-The product '.NET Basic Programming with Microsoft.' is Buying successfully from the seller Seller_101 at price 1999 only.
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 3
+// The item is added to the cart.
+// The item is recently check out by you.
+// The cart details are showing now....
+// The quantity is added to the cart.
 
 
-Please choose below categories by their index number: 
+// Please choose below categories by their index number: 
 
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-6
-The customer Customer_101 review the pruduct Product_101 successfully with rating of 4
-The review User_101_Review is deleted successfully.
-The review User_101_Review is edited successfully.
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 4
+// The order details are below: 
 
-
-Please choose below categories by their index number: 
-
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-7
-The payment detail is given below: 
-
-1. Payment Id: 86429753
-2. Order Id: Order_101
-3. Transaction Id: #86429753Abc101
-4. Total Price: 1999
-5. Payment status: True
+// 1. Customer Id: Customer_101
+// 2. Product Id: Product_101
+// 3. Price: 1999
+// 4. Seller Id: Seller_101
+// 5. Order Date: 08/29/2023 08:40:41
+// 6. Address: 20 No. Road, Chakdaha-Bongaon, North 24 Parganas, West Bengal-743262
+// 7. Delivery Status: Delivered
+// 8. Delivery Date: 08/29/2023 08:40:41
 
 
-Please choose below categories by their index number: 
+// Please choose below categories by their index number: 
 
-1. Customer Details 1
-2. Seller Details 2
-3. Shopping Cart 3
-4. Orders 4
-5. Product Details 5
-6. Reviews 6
-7. Payment Details 7
-8. Exit the E_Commerce 8
-8
-Thank You for using our E_Commerce site for your daily requierments.
-You are logout from our site now, We hope that you are enjoying our products and services..
-Visit again, have a good day.
-Thank You.
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 5
+// ERROR!
+// The item '.NET Basic Programming with Microsoft.' with product Id Product_101 is added to cart successfully.
+// The item '.NET Basic Programming with Microsoft.' is sold successfully.
+// Getting the selected Product details: 
+
+// 1. Product Name: .NET Basic Programming with Microsoft.
+// 2. Product Id: Product_101
+// 3. Product Price: 1999
+// 4. Seller Id: Seller_101
+// 5. Order posted date: 08/29/2023 08:40:46ERROR!
+// The product '.NET Basic Programming with Microsoft.' is Buying successfully from the seller Seller_101 at price 1999 only.
+
+
+// Please choose below categories by their index number: 
+
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 6
+// The customer Customer_101 review the pruduct Product_101 successfully with rating of 4
+// The review User_101_Review is deleted successfully.
+// The review User_101_Review is edited successfully.
+
+
+// Please choose below categories by their index number: 
+
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 7
+// The payment detail is given below: 
+
+// 1. Payment Id: 86429753
+// 2. Order Id: Order_101
+// 3. Transaction Id: #86429753Abc101
+// 4. Total Price: 1999
+// 5. Payment status: True
+
+
+// Please choose below categories by their index number: 
+
+// 1. Customer Details 1
+// 2. Seller Details 2
+// 3. Shopping Cart 3
+// 4. Orders 4
+// 5. Product Details 5
+// 6. Reviews 6
+// 7. Payment Details 7
+// 8. Exit the E_Commerce 8
+// 8
+// Thank You for using our E_Commerce site for your daily requierments.
+// You are logout from our site now, We hope that you are enjoying our products and services..
+// Visit again, have a good day.
+// Thank You.
 
