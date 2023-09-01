@@ -1,0 +1,63 @@
+public interface Imylterator {
+    int next();
+    void begin();
+    boolean hasNext();
+}
+
+public class myCollection {
+    private int[] arr = new int[10000];
+    private int tos = -1;
+    private int nav = -1;
+
+    public class myIterator implements Imylterator {
+        @Override
+        public int next() {
+            if (tos != -1 && nav <= tos) {
+                int value = arr[nav];
+                nav++;
+                return value;
+            }
+            return -1; // You can return a default value when there's no more element to iterate.
+        }
+
+        @Override
+        public void begin() {
+            if (tos > 0) {
+                nav = 0;
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return nav <= tos;
+        }
+    }
+
+    public void add(int i) {
+        if (tos < 9999) { // Check if the array is not full.
+            tos++;
+            arr[tos] = i;
+        }
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        myCollection c1 = new myCollection();
+
+        // Adding 10 elements to c1
+        for (int i = 1; i <= 10; i++) {
+            c1.add(i);
+        }
+
+        // Creating an iterator and starting at position 0
+        Imylterator it = c1.new myIterator();
+        it.begin();
+
+        // Iterating and printing elements
+        while (it.hasNext()) {
+            int nextValue = it.next();
+            System.out.println(nextValue);
+        }
+    }
+}
