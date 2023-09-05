@@ -7,34 +7,62 @@ class Program
     {
         try
         {
-            if (args.Length % 2 != 0)
+            if (args.Length == 0)
             {
-                throw new ArgumentException("The list is not complete");
+                Console.WriteLine("Please provide a comma-separated list of topic name and time in hours.");
+                return;
             }
 
-            Dictionary<string, int> topics = new Dictionary<string, int>();
-            
-            for (int i = 0; i < args.Length; i += 2)
+            string input = string.Join(" ", args);
+            string[] topicTimePairs = input.Split(',');
+
+            Dictionary<string, int> topicTimes = new Dictionary<string, int>();
+
+            foreach (var pair in topicTimePairs)
             {
-                string topicName = args[i];
-                if (!int.TryParse(args[i + 1], out int hours))
+                string[] parts = pair.Trim().Split(' ');
+                if (parts.Length == 2)
                 {
-                    throw new ArgumentException("The list is incorrect");
+                    string topic = parts[0];
+                    if (int.TryParse(parts[1], out int timeInHours))
+                    {
+                        topicTimes[topic] = timeInHours;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Invalid time format for topic: {topic}");
+                    }
                 }
-                topics.Add(topicName, hours);
+                else
+                {
+                    Console.WriteLine($"Invalid input format: {pair}");
+                }
             }
 
+            int totalHours = 0;
             int hoursPerDay = 8;
+            int currentDay = 1;
 
-            foreach (var topic in topics)
+            Console.WriteLine("Topics covered day-wise:");
+            foreach (var pair in topicTimes)
             {
-                int daysNeeded = (int)Math.Ceiling((double)topic.Value / hoursPerDay);
-                Console.WriteLine($"{topic.Key}: {daysNeeded} days training");
+                if (totalHours + pair.Value <= hoursPerDay)
+                {
+                    Console.WriteLine($"Day {currentDay}: {pair.Key} ({pair.Value} hours)");
+                    totalHours += pair.Value;
+                }
+                else
+                {
+                    currentDay++;
+                    totalHours = 0;
+                    Console.WriteLine($"Day {currentDay}: {pair.Key} ({pair.Value} hours)");
+                    totalHours += pair.Value;
+                }
             }
         }
-        catch (ArgumentException ex)
+        catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
-} 
+}
