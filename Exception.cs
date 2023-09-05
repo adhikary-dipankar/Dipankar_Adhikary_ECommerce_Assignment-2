@@ -44,3 +44,45 @@ class Program
         }
     }
 }
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        try
+        {
+            if (args.Length % 2 != 0)
+            {
+                throw new ArgumentException("The list is not complete.");
+            }
+
+            Dictionary<string, int> topics = new Dictionary<string, int>();
+
+            for (int i = 0; i < args.Length; i += 2)
+            {
+                string topic = args[i];
+                if (!int.TryParse(args[i + 1], out int hours))
+                {
+                    throw new ArgumentException("The list is incorrect.");
+                }
+                topics[topic] = hours;
+            }
+
+            int hoursInADay = 8;
+
+            foreach (var topic in topics)
+            {
+                int days = (int)Math.Ceiling((double)topic.Value / hoursInADay);
+                Console.WriteLine($"{topic.Key}: {days} days training");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception: {ex.Message}");
+        }
+    }
+}
+
