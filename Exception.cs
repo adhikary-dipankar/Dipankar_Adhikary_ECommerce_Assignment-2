@@ -7,56 +7,34 @@ class Program
     {
         try
         {
-            if (args.Length == 0)
+            Console.WriteLine("Enter a comma-separated list of topic name and hours (e.g., Java 24, JEE 10, JME 12):");
+            string input = Console.ReadLine();
+            
+            // Split the input string by commas
+            string[] inputArray = input.Split(',');
+
+            Dictionary<string, int> topics = new Dictionary<string, int>();
+
+            // Parse the input into topic name and hours, and add to the dictionary
+            for (int i = 0; i < inputArray.Length; i += 2)
             {
-                Console.WriteLine("Please provide a comma-separated list of topic name and time in hours.");
-                return;
+                string topic = inputArray[i].Trim();
+                int hours = int.Parse(inputArray[i + 1].Trim());
+                topics[topic] = hours;
             }
 
-            string input = string.Join(" ", args);
-            string[] topicTimePairs = input.Split(',');
-
-            Dictionary<string, int> topicTimes = new Dictionary<string, int>();
-
-            foreach (var pair in topicTimePairs)
-            {
-                string[] parts = pair.Trim().Split(' ');
-                if (parts.Length == 2)
-                {
-                    string topic = parts[0];
-                    if (int.TryParse(parts[1], out int timeInHours))
-                    {
-                        topicTimes[topic] = timeInHours;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Invalid time format for topic: {topic}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"Invalid input format: {pair}");
-                }
-            }
-
+            // Calculate topics covered day-wise
             int totalHours = 0;
-            int hoursPerDay = 8;
-            int currentDay = 1;
-
+            int day = 1;
             Console.WriteLine("Topics covered day-wise:");
-            foreach (var pair in topicTimes)
+            foreach (var topic in topics)
             {
-                if (totalHours + pair.Value <= hoursPerDay)
+                Console.WriteLine($"Day {day}: {topic.Key} ({topic.Value} hours)");
+                totalHours += topic.Value;
+                if (totalHours >= 8)
                 {
-                    Console.WriteLine($"Day {currentDay}: {pair.Key} ({pair.Value} hours)");
-                    totalHours += pair.Value;
-                }
-                else
-                {
-                    currentDay++;
                     totalHours = 0;
-                    Console.WriteLine($"Day {currentDay}: {pair.Key} ({pair.Value} hours)");
-                    totalHours += pair.Value;
+                    day++;
                 }
             }
         }
