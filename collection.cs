@@ -152,3 +152,48 @@ class Person
         return $"{Name} (Age: {Age})";
     }
 }
+
+using System;
+
+public class MaxMinFinder<T> where T : IComparable<T>
+{
+    public T FindMax(T a, T b, T c)
+    {
+        T max = a;
+        if (b.CompareTo(max) > 0)
+        {
+            max = b;
+        }
+        if (c.CompareTo(max) > 0)
+        {
+            max = c;
+        }
+        return max;
+    }
+
+    public T FindMin(T a, T b, T c)
+    {
+        T min = a;
+        if (b.CompareTo(min) < 0)
+        {
+            min = b;
+        }
+        if (c.CompareTo(min) < 0)
+        {
+            min = c;
+        }
+        return min;
+    }
+}
+MaxMinFinder<double> doubleFinder = new MaxMinFinder<double>();
+double a = 5.7;
+double b = 3.2;
+double c = 7.1;
+
+double max = doubleFinder.FindMax(a, b, c);
+double min = doubleFinder.FindMin(a, b, c);
+
+Console.WriteLine($"Max: {max}");
+Console.WriteLine($"Min: {min}");
+
+
