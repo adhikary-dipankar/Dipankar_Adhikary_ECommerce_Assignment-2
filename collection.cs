@@ -1,3 +1,71 @@
+
+
+using System;
+
+public class MinMaxFinder<T> where T : IComparable<T>
+{
+    private T[] elements;
+
+    public MinMaxFinder(T element1, T element2, T element3)
+    {
+        elements = new T[] { element1, element2, element3 };
+    }
+
+    public T FindMin()
+    {
+        T min = elements[0];
+        foreach (T element in elements)
+        {
+            if (element.CompareTo(min) < 0)
+            {
+                min = element;
+            }
+        }
+        return min;
+    }
+
+    public T FindMax()
+    {
+        T max = elements[0];
+        foreach (T element in elements)
+        {
+            if (element.CompareTo(max) > 0)
+            {
+                max = element;
+            }
+        }
+        return max;
+    }
+}
+
+
+
+
+
+class Program
+{
+    static void Main()
+    {
+        MinMaxFinder<int> intMinMaxFinder = new MinMaxFinder<int>(10, 5, 15);
+        int minInt = intMinMaxFinder.FindMin();
+        int maxInt = intMinMaxFinder.FindMax();
+
+        MinMaxFinder<double> doubleMinMaxFinder = new MinMaxFinder<double>(3.14, 1.0, 2.71);
+        double minDouble = doubleMinMaxFinder.FindMin();
+        double maxDouble = doubleMinMaxFinder.FindMax();
+
+        Console.WriteLine($"Min Int: {minInt}, Max Int: {maxInt}");
+        Console.WriteLine($"Min Double: {minDouble}, Max Double: {maxDouble}");
+    }
+}
+
+
+
+
+
+
+
+
 //using System;
 //using System.Collections;
 
