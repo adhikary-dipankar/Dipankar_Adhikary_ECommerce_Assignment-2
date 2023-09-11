@@ -59,6 +59,28 @@ actual[0]= true; actual[1]= false; actual[2] = true;
 
 
 
+
+
+
+
+
+Implement a railway ticket counter scenario where there are two queues- one general and one for senior citizen.
+Tickets are issued such that for every one person in senior citizen queue, two persons in general queue are processed.
+Write a program that takes input for 10 people who come at various points and print the list of people in the order of their processing sequence.
+Person : Name, age : Input
+Eg: Person1, Person4, Person5, Person6 -> SQ ; Remaining Person ->GQ
+Start Processing
+Process both queues completely
+Take care of all the elements in both the queues being dequed.
+If any queue is bigger, first take the approach, once one queue is emptied, dequeue the second queue without wait.
+
+
+
+
+
+
+
+
 using System;
 using System.Collections.Generic;
 
