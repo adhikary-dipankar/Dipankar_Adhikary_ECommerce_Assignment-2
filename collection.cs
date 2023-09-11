@@ -56,3 +56,77 @@ BitArray actual-new BitArray(4).
 actual[0]=true, actual[1] = fa BitArray actual new BitArray(4);
 
 actual[0]= true; actual[1]= false; actual[2] = true;
+
+
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Queue<Person> generalQueue = new Queue<Person>();
+        Queue<Person> seniorCitizenQueue = new Queue<Person>();
+
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.Write($"Enter the name of Person {i}: ");
+            string name = Console.ReadLine();
+            Console.Write($"Enter the age of Person {i}: ");
+            int age = int.Parse(Console.ReadLine());
+
+            Person person = new Person(name, age);
+
+            if (age >= 60)
+            {
+                seniorCitizenQueue.Enqueue(person);
+                Console.WriteLine($"{name} added to the Senior Citizen Queue.");
+            }
+            else
+            {
+                generalQueue.Enqueue(person);
+                Console.WriteLine($"{name} added to the General Queue.");
+            }
+        }
+
+        Console.WriteLine("\nProcessing Ticket Counter Queue:");
+
+        while (seniorCitizenQueue.Count > 0)
+        {
+            Console.WriteLine($"Processing {seniorCitizenQueue.Dequeue()}");
+            if (generalQueue.Count >= 2)
+            {
+                Console.WriteLine($"Processing {generalQueue.Dequeue()}");
+                Console.WriteLine($"Processing {generalQueue.Dequeue()}");
+            }
+            else if (generalQueue.Count == 1)
+            {
+                Console.WriteLine($"Processing {generalQueue.Dequeue()}");
+                Console.WriteLine("No more people in the General Queue.");
+            }
+        }
+
+        while (generalQueue.Count > 0)
+        {
+            Console.WriteLine($"Processing {generalQueue.Dequeue()}");
+        }
+    }
+}
+
+class Person
+{
+    public string Name { get; }
+    public int Age { get; }
+
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+
+    public override string ToString()
+    {
+        return $"{Name} (Age: {Age})";
+    }
+}
