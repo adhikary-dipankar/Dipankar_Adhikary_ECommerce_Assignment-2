@@ -1,6 +1,75 @@
 
 
 
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dictionary<string, List<string>> dictionary = new Dictionary<string, List<string>>();
+
+        // Add words and their meanings to the dictionary
+        AddWordMeaning(dictionary, "apple", new List<string> { "a fruit", "a tech company" });
+        AddWordMeaning(dictionary, "book", new List<string> { "a written or printed work", "to reserve" });
+        AddWordMeaning(dictionary, "bank", new List<string> { "a financial institution", "the side of a river" });
+
+        // Display the words and their meanings in sorted order
+        DisplayDictionary(dictionary);
+        
+        // Search for a word and display its meanings
+        Console.Write("\nEnter a word to search: ");
+        string searchWord = Console.ReadLine().ToLower();
+
+        if (dictionary.ContainsKey(searchWord))
+        {
+            List<string> meanings = dictionary[searchWord];
+            Console.WriteLine($"\nMeanings of '{searchWord}':");
+            foreach (var meaning in meanings)
+            {
+                Console.WriteLine(meaning);
+            }
+        }
+        else
+        {
+            Console.WriteLine($"\n'{searchWord}' not found in the dictionary.");
+        }
+    }
+
+    static void AddWordMeaning(Dictionary<string, List<string>> dictionary, string word, List<string> meanings)
+    {
+        word = word.ToLower(); // Convert word to lowercase for case-insensitive search
+        dictionary[word] = meanings;
+    }
+
+    static void DisplayDictionary(Dictionary<string, List<string>> dictionary)
+    {
+        var sortedDictionary = dictionary.OrderBy(pair => pair.Key);
+        
+        Console.WriteLine("Dictionary:");
+        foreach (var entry in sortedDictionary)
+        {
+            Console.WriteLine($"Word: {entry.Key}");
+            Console.WriteLine("Meanings:");
+            foreach (var meaning in entry.Value)
+            {
+                Console.WriteLine($"- {meaning}");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+
+
+
+
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
