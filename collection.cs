@@ -2,6 +2,159 @@
 
 
 
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string fileName = "UserInput.txt";
+        string userInput;
+        int wordCount = 0;
+
+        Console.WriteLine("Enter text (type 'done' to finish):");
+
+        // Write user input to the file until "done" is entered
+        using (StreamWriter writer = new StreamWriter(fileName))
+        {
+            while (true)
+            {
+                userInput = Console.ReadLine();
+                if (userInput.ToLower() == "done")
+                    break;
+
+                writer.WriteLine(userInput);
+            }
+        }
+
+        // Read the file and count words
+        using (StreamReader reader = new StreamReader(fileName))
+        {
+            string fileContent = reader.ReadToEnd();
+            string[] words = fileContent.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            wordCount = words.Length;
+        }
+
+        Console.WriteLine($"\nNumber of words in the file: {wordCount}\n");
+
+        // Display the file content
+        Console.WriteLine("File Content:");
+        using (StreamReader reader = new StreamReader(fileName))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.WriteLine(line);
+            }
+        }
+
+        // Optionally, you can delete the file after displaying its content
+        File.Delete(fileName);
+    }
+}
+ 
+
+
+
+
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.WriteLine("Menu:");
+            Console.WriteLine("1. Write to a file");
+            Console.WriteLine("2. Read from a file");
+            Console.WriteLine("3. Exit");
+            Console.Write("Enter your choice (1/2/3): ");
+
+            int choice;
+            if (int.TryParse(Console.ReadLine(), out choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        WriteToFile();
+                        break;
+                    case 2:
+                        ReadFromFile();
+                        break;
+                    case 3:
+                        return; // Exit the program
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid option (1/2/3).");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid option (1/2/3).");
+            }
+        }
+    }
+
+    static void WriteToFile()
+    {
+        Console.WriteLine("Enter text (type 'done' to finish and save):");
+
+        using (StreamWriter writer = new StreamWriter("textfile.txt"))
+        {
+            while (true)
+            {
+                string input = Console.ReadLine();
+                if (input.ToLower() == "done")
+                    break;
+
+                writer.WriteLine(input);
+            }
+        }
+
+        Console.WriteLine("Text written to the file successfully.");
+    }
+
+    static void ReadFromFile()
+    {
+        try
+        {
+            string[] lines = File.ReadAllLines("textfile.txt");
+            Console.WriteLine($"Contents of the file (Number of Words: {CountWords(lines)}):");
+            foreach (string line in lines)
+            {
+                Console.WriteLine(line);
+            }
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine("The file does not exist.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+
+    static int CountWords(string[] lines)
+    {
+        int wordCount = 0;
+        foreach (string line in lines)
+        {
+            string[] words = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            wordCount += words.Length;
+        }
+        return wordCount;
+    }
+}
+
+
+
+
+
+
 
 using System;
 using System.Collections.Generic;
