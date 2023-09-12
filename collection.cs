@@ -2,6 +2,176 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+
+class Emp
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public Emp(int id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Prepare a list of 10 employees (coded)
+        List<Emp> employees = new List<Emp>
+        {
+            new Emp(1, "John"),
+            new Emp(2, "Alice"),
+            new Emp(3, "Bob"),
+            new Emp(4, "Eve"),
+            new Emp(5, "Charlie"),
+            new Emp(6, "David"),
+            new Emp(7, "Emily"),
+            new Emp(8, "Frank"),
+            new Emp(9, "Grace"),
+            new Emp(10, "Helen")
+        };
+
+        Console.Write("Enter your employee ID: ");
+        if (int.TryParse(Console.ReadLine(), out int empID))
+        {
+            Emp employee = employees.Find(emp => emp.Id == empID);
+            if (employee != null)
+            {
+                // Get the current date and time
+                DateTime currentDateTime = DateTime.Now;
+
+                // Create a formatted log message
+                string logMessage = $"Emp with ID: {employee.Id} having name {employee.Name} has logged in at {currentDateTime}";
+
+                // Append the log message to the "LoginDetails.txt" file in the "Ponica" folder
+                string folderPath = "C:\\Ponica"; // Change this path to your desired folder
+                string filePath = Path.Combine(folderPath, "LoginDetails.txt");
+
+                try
+                {
+                    // Ensure the folder exists
+                    Directory.CreateDirectory(folderPath);
+
+                    // Append the log message to the file
+                    File.AppendAllText(filePath, logMessage + Environment.NewLine);
+
+                    Console.WriteLine("Login details have been logged successfully.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error writing to the file: {ex.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Employee not found with the provided ID.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid employee ID.");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        if (args.Length != 1)
+        {
+            Console.WriteLine("Usage: CheckFile <filename.cs>");
+            return;
+        }
+
+        string inputFileName = args[0];
+
+        if (!inputFileName.EndsWith(".cs", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine("Error: The file is not a C# source file (extension is not .cs).");
+            return;
+        }
+
+        string outputFileName;
+
+        // Read the content of the input file
+        string fileContent;
+        try
+        {
+            fileContent = File.ReadAllText(inputFileName);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error reading the file: {ex.Message}");
+            return;
+        }
+
+        // Check if the file content contains "Main(string[] args)" or "Main()"
+        if (Regex.IsMatch(fileContent, @"\bMain\s*\(\s*string\[\]\s*args\s*\)|\bMain\s*\(\s*\)", RegexOptions.Multiline))
+        {
+            // Create an executable file
+            outputFileName = Path.ChangeExtension(inputFileName, "exe");
+
+            try
+            {
+                File.WriteAllText(outputFileName, fileContent);
+                Console.WriteLine("Compiled successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating the executable file: {ex.Message}");
+            }
+        }
+        else
+        {
+            // Create a mydll file
+            outputFileName = Path.ChangeExtension(inputFileName, "mydll");
+
+            try
+            {
+                File.WriteAllText(outputFileName, fileContent);
+                Console.WriteLine("Compiled successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating the mydll file: {ex.Message}");
+            }
+        }
+
+        // Copy the content of the input file to the output file
+        try
+        {
+            File.Copy(inputFileName, outputFileName, true);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error copying file content: {ex.Message}");
+        }
+    }
+}
+
+
+
+
+
+
+using System;
 using System.IO;
 
 class Program
