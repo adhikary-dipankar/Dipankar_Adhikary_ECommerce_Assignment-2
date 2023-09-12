@@ -1,6 +1,69 @@
 
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Employee
+{
+    public string Name { get; set; }
+    public string Designation { get; set; }
+
+    public Employee(string name, string designation)
+    {
+        Name = name;
+        Designation = designation;
+    }
+
+    // Override GetHashCode and Equals to compare employees by name and designation
+    public override int GetHashCode()
+    {
+        return Name.GetHashCode() ^ Designation.GetHashCode();
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is Employee otherEmployee)
+        {
+            return Name == otherEmployee.Name && Designation == otherEmployee.Designation;
+        }
+        return false;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        List<Employee> list1 = new List<Employee>
+        {
+            new Employee("John", "Manager"),
+            new Employee("Alice", "Developer"),
+            new Employee("Bob", "Designer")
+        };
+
+        List<Employee> list2 = new List<Employee>
+        {
+            new Employee("Alice", "Developer"), // Duplicate
+            new Employee("Eve", "Manager"),
+            new Employee("Charlie", "Tester")
+        };
+
+        HashSet<Employee> mergedList = new HashSet<Employee>(list1.Concat(list2));
+
+        Console.WriteLine("Merged Employee List:");
+        foreach (var employee in mergedList)
+        {
+            Console.WriteLine($"Name: {employee.Name}, Designation: {employee.Designation}");
+        }
+    }
+}
+
+
+
+
+
 
 
 using System;
