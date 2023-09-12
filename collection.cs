@@ -1,5 +1,121 @@
 
 
+
+
+
+using System;
+using System.Collections.Generic;
+
+// Define an Employee class
+class Employee
+{
+    public string Name { get; set; }
+    public string Designation { get; set; }
+
+    public Employee(string name, string designation)
+    {
+        Name = name;
+        Designation = designation;
+    }
+}
+
+// Define a DesignationLists class to hold lists of employees for each designation
+class DesignationLists
+{
+    public List<Employee> ProgramManagers { get; } = new List<Employee>();
+    public List<Employee> ProjectManagers { get; } = new List<Employee>();
+    public List<Employee> TeamLeads { get; } = new List<Employee>();
+    public List<Employee> SeniorProgrammers { get; } = new List<Employee>();
+    public List<Employee> JuniorProgrammers { get; } = new List<Employee>();
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        DesignationLists d = new DesignationLists();
+
+        while (true)
+        {
+            Console.WriteLine("Menu:\n1. Add Employee\n2. Display List\n3. Exit");
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    AddEmployee(d);
+                    break;
+                case 2:
+                    Display(d);
+                    break;
+                case 3:
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice. Please choose a valid option.");
+                    break;
+            }
+        }
+    }
+
+    static void AddEmployee(DesignationLists d)
+    {
+        Console.WriteLine("Enter employee name: ");
+        string name = Console.ReadLine();
+        
+        Console.WriteLine("Enter employee designation (e.g., 'PM', 'PrjM', 'TL', 'SP', 'JP'): ");
+        string designation = Console.ReadLine();
+
+        Employee employee = new Employee(name, designation);
+
+        // Add the employee to the appropriate list based on designation
+        switch (designation)
+        {
+            case "PM":
+                d.ProgramManagers.Add(employee);
+                break;
+            case "PrjM":
+                d.ProjectManagers.Add(employee);
+                break;
+            case "TL":
+                d.TeamLeads.Add(employee);
+                break;
+            case "SP":
+                d.SeniorProgrammers.Add(employee);
+                break;
+            case "JP":
+                d.JuniorProgrammers.Add(employee);
+                break;
+            default:
+                Console.WriteLine("Invalid designation. Employee not added.");
+                break;
+        }
+    }
+
+    static void Display(DesignationLists d)
+    {
+        Console.WriteLine("\nEmployee List:");
+        DisplayEmployees("Program Managers", d.ProgramManagers);
+        DisplayEmployees("Project Managers", d.ProjectManagers);
+        DisplayEmployees("Team Leads", d.TeamLeads);
+        DisplayEmployees("Senior Programmers", d.SeniorProgrammers);
+        DisplayEmployees("Junior Programmers", d.JuniorProgrammers);
+    }
+
+    static void DisplayEmployees(string title, List<Employee> employees)
+    {
+        Console.WriteLine($"--- {title} ---");
+        foreach (var employee in employees)
+        {
+            Console.WriteLine($"Name: {employee.Name}, Designation: {employee.Designation}");
+        }
+    }
+}
+
+
+
+
+
+
 using System;
 
 public class MinMaxFinder<T> where T : IComparable<T>
