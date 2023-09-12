@@ -1,6 +1,141 @@
 
 
 
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.WriteLine("Main Menu:");
+            Console.WriteLine("1. Using File");
+            Console.WriteLine("2. Using FileStream");
+            Console.WriteLine("3. Using StreamReader and StreamWriter");
+            Console.WriteLine("4. Exit");
+            Console.Write("Enter your choice (1/2/3/4): ");
+
+            if (int.TryParse(Console.ReadLine(), out int mainChoice))
+            {
+                switch (mainChoice)
+                {
+                    case 1:
+                        FileMenu();
+                        break;
+                    case 2:
+                        FileStreamMenu();
+                        break;
+                    case 3:
+                        StreamReaderStreamWriterMenu();
+                        break;
+                    case 4:
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid option (1/2/3/4).");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid option (1/2/3/4).");
+            }
+        }
+    }
+
+    static void FileMenu()
+    {
+        string fileName = "FileMenu.txt";
+
+        while (true)
+        {
+            Console.WriteLine("\nFile Menu:");
+            Console.WriteLine("1. Write to File");
+            Console.WriteLine("2. Read from the File");
+            Console.WriteLine("3. Go to Main Menu");
+            Console.Write("Enter your choice (1/2/3): ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice))
+            {
+                switch (choice)
+                {
+                    case 1:
+                        WriteToFile(fileName);
+                        break;
+                    case 2:
+                        ReadFromFile(fileName);
+                        break;
+                    case 3:
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid option (1/2/3).");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid option (1/2/3).");
+            }
+        }
+    }
+
+    static void WriteToFile(string fileName)
+    {
+        Console.WriteLine("\nEnter text (type 'done' to finish):");
+        string userInput;
+
+        using (StreamWriter writer = new StreamWriter(fileName))
+        {
+            while (true)
+            {
+                userInput = Console.ReadLine();
+                if (userInput.ToLower() == "done")
+                    break;
+
+                writer.WriteLine(userInput);
+            }
+        }
+
+        Console.WriteLine("Text written to the file successfully.");
+    }
+
+    static void ReadFromFile(string fileName)
+    {
+        if (!File.Exists(fileName))
+        {
+            Console.WriteLine("The file does not exist. Please write to the file first.");
+            return;
+        }
+
+        Console.WriteLine("\nFile Content:");
+
+        using (StreamReader reader = new StreamReader(fileName))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.WriteLine(line);
+            }
+        }
+    }
+
+    static void FileStreamMenu()
+    {
+        // Implement FileStream menu here
+        Console.WriteLine("File Stream Menu (Not implemented yet).");
+    }
+
+    static void StreamReaderStreamWriterMenu()
+    {
+        // Implement StreamReader and StreamWriter menu here
+        Console.WriteLine("StreamReader and StreamWriter Menu (Not implemented yet).");
+    }
+}
+
+
+
+
 
 using System;
 using System.IO;
