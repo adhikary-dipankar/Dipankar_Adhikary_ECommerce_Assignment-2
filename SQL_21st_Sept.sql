@@ -92,4 +92,28 @@ SELECT * FROM GetEligibilityForGift();
 
 
 
+As parameter take in an int number and print/select the number to 1 in decreasing order:	
+Ex:
+Exec spProc1 6
+
+
+CREATE PROCEDURE spProc1
+    @n INT
+AS
+BEGIN
+    IF @n < 1
+    BEGIN
+        PRINT 'Input parameter should be greater than or equal to 1.';
+        RETURN;
+    END
+
+    DECLARE @i INT = @n;
+
+    WHILE @i >= 1
+    BEGIN
+        PRINT @i;
+        SET @i = @i - 1;
+    END
+END;
+
 
