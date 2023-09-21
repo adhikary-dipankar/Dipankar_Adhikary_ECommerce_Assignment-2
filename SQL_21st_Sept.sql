@@ -63,3 +63,26 @@ Customer_id : same as table
 Zip_code : same as table
 Eligible4Gift: calculated as (yes/no) according to whether the zip_code is prime or not. (use the scalar function chkPrime() and case..when..then or if..else to insert the value into the table variable).
 The function returns the table to be displayed later.
+
+
+
+-- Create the table-valued function
+CREATE FUNCTION GetEligibilityForGift()
+RETURNS @EligibilityTable TABLE (
+    Customer_id INT,
+    Zip_code VARCHAR(10),
+    Eligible4Gift VARCHAR(3)
+)
+AS
+BEGIN
+    INSERT INTO @EligibilityTable (Customer_id, Zip_code, Eligible4Gift)
+    SELECT Customer_id, Zip_code,
+           CASE WHEN dbo.chkPrime(CAST(Zip_code AS INT)) = 'oddprime' THEN 'yes' ELSE 'no' END
+    FROM customers;
+
+    RETURN;
+END;
+
+-- Call the table-valued function and display the results
+SELECT * FROM GetEligibilityForGift();
+
