@@ -48,3 +48,38 @@ SELECT chkPrime(8); -- Returns 'even'
 SELECT chkPrime(13); -- Returns 'oddprime'
 SELECT chkPrime(9); -- Returns 'odd'
 SELECT list_price, chkPrime(list_price) AS ckPrime FROM products;
+
+
+
+CREATE FUNCTION chkPrime(@n INT)
+RETURNS NVARCHAR(10)
+AS
+BEGIN
+    DECLARE @isPrime BIT = 1;
+    
+    -- Check if the number is even
+    IF @n % 2 = 0
+        RETURN 'even';
+
+    -- Check if the number is less than 2 (not prime)
+    IF @n < 2
+        RETURN 'odd';
+
+    -- Check if the number is divisible by any odd integer from 3 to the square root of the number
+    DECLARE @i INT = 3;
+    WHILE @i * @i <= @n
+    BEGIN
+        IF @n % @i = 0
+        BEGIN
+            SET @isPrime = 0;
+            BREAK;
+        END
+        SET @i = @i + 2; -- Only check odd divisors
+    END
+
+    -- Return 'oddprime' if it's both odd and prime, otherwise 'odd'
+    IF @isPrime = 1
+        RETURN 'oddprime';
+    ELSE
+        RETURN 'odd';
+END;
