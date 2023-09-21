@@ -66,9 +66,9 @@ The function returns the table to be displayed later.
 
 
 
-drop table customers;
+DROP TABLE customers;
 
-drop function GetEligibilityForGift;
+DROP FUNCTION GetEligibilityForGift;
 
 CREATE FUNCTION GetEligibilityForGift()
 RETURNS @EligibilityTable TABLE (
