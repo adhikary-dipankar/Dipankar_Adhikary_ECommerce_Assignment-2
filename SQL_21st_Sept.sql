@@ -66,7 +66,10 @@ The function returns the table to be displayed later.
 
 
 
--- Create the table-valued function
+drop table customers;
+
+drop function GetEligibilityForGift;
+
 CREATE FUNCTION GetEligibilityForGift()
 RETURNS @EligibilityTable TABLE (
     Customer_id INT,
@@ -77,12 +80,16 @@ AS
 BEGIN
     INSERT INTO @EligibilityTable (Customer_id, Zip_code, Eligible4Gift)
     SELECT Customer_id, Zip_code,
-           CASE WHEN dbo.chkPrime(CAST(Zip_code AS INT)) = 'oddprime' THEN 'yes' ELSE 'no' END
-    FROM customers;
+           CASE WHEN dbo.chkPrime(CAST(Zip_code AS INT)) = 'Odd_Prime' THEN 'Yes' ELSE 'No' END
+    FROM bikestores.sales.customers;
 
     RETURN;
 END;
 
--- Call the table-valued function and display the results
+
+
 SELECT * FROM GetEligibilityForGift();
+
+
+
 
