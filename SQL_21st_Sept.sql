@@ -52,3 +52,14 @@ SELECT salary, dbo.chkPrime(salary) AS Check_Prime FROM customers;
 
 select list_price ,dbo.chkPrime(list_price) as Check_Prime from bikestores.production.products;
 
+
+
+drop table if exists customers;
+select* into customers from BikeStores.sales.customers;
+select* from customers;
+
+Define a table variable function which has same number of rows as customers with columns as:
+Customer_id : same as table
+Zip_code : same as table
+Eligible4Gift: calculated as (yes/no) according to whether the zip_code is prime or not. (use the scalar function chkPrime() and case..when..then or if..else to insert the value into the table variable).
+The function returns the table to be displayed later.
