@@ -97,6 +97,7 @@ Ex:
 Exec spProc1 6
 
 
+
 CREATE PROCEDURE spProc1
     @n INT
 AS
@@ -116,4 +117,4 @@ BEGIN
     END
 END;
 
-
+EXEC spProc1 10;
