@@ -14,3 +14,70 @@ Design a form with form action taking to Home page.
 Form should include at least name and email address, and whatever else is required
 Links to Main, About us page
 Please don’t forget to update your Index page to go to Main Page
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dipankar IT Solutions</title>
+</head>
+<body>
+    <h1>Welcome to Dipankar IT Solutions</h1>
+    
+    <h2>Our Directors:</h2>
+    <ul>
+        <li>Director 1</li>
+        <li>Director 2</li>
+        <li>Director 3</li>
+        <li>Director 4</li>
+        <li>Director 5</li>
+    </ul>
+    
+    <h2>About Our Services:</h2>
+    <p>Here, you can provide information about the services your company offers.</p>
+    
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us - Dipankar IT Solutions</title>
+</head>
+<body>
+    <h1>About Our Directors</h1>
+    <p>Provide brief information about the directors here.</p>
+    
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact Us</a>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us - Dipankar IT Solutions</title>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form action="index.html" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <!-- Add other form fields as needed -->
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+</body>
+</html>
+
+
