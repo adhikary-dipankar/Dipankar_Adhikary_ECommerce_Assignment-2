@@ -124,3 +124,443 @@ namespace ExerciseADODay28
 
 
 
+
+Exercise:
+Consider the Example Code for LoginController
+Add a “Register Now” link in the Index.cshtml page of LoginController.
+In the action of Register page, add the view for Registration:
+Enter Name : 
+Enter UserName :
+Enter Password : 
+
+On click of Register, The page should take in the Credentials and Insert the data in the LoginTbl of the Database. The Insertion Operation should be written in the CRUD_ADO project.
+
+
+using System;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace CRUD_ADO
+{
+    public class CRUD
+    {
+ 
+        public static Boolean chkValidate(string name,string uname, string pass)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-O7LF2JA;Initial Catalog=training;Integrated Security=True");
+                con.Open(); 
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO loginTBL (name, uname, passwd) VALUES (@name, @uname, @pass)", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@uname", uname);
+                cmd.Parameters.AddWithValue("@pass", pass);
+
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e) { return false; }
+            return false;
+            
+        }
+    }
+}
+
+
+
+
+
+Have “Update Password” link added in the Success Page.
+The link takes us to a page where we need to enter :
+Name: 
+Old Password:
+New Password:
+Confirm new Password:
+
+If the  “New Password” ==  “Confirm new Password” the update in the database the new password according to the name and old password.
+Code of Update should be written in CRUD_ADO Project, called here.
+
+
+using System;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace CRUD_ADO
+{
+    public class CRUD
+    {
+ 
+        public static Boolean chkValidate(string name,string op, string np, string cp )
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-O7LF2JA;Initial Catalog=training;Integrated Security=True");
+                con.Open();
+
+
+                if (np==cp)
+                {
+                    SqlCommand cmd = new SqlCommand("Update loginTBL set passwd=@np where name=@name and passwd=@op", con);
+                    cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.AddWithValue("@np", np);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@op", op);
+
+                    int r = cmd.ExecuteNonQuery();
+                    if (r > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e) { return false; }
+            return false;
+            
+        }
+    }
+}
+
+
+
+
+<h1>
+    Update Your Password Here:
+    <br /><br />
+
+    <form asp-controller="Login" asp-action="mySite">
+        <table>
+            <tr>
+                <td>
+                    <label for="name">Name:</label>
+                </td>
+                <td>
+                    <input type="text" name="name" id="name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="op">Old Password:</label>
+                </td>
+                <td>
+                    <input type="password" name="op" id="op" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="np">New Password:</label>
+                </td>
+                <td>
+                    <input type="password" name="np" id="np" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for=",cp">Confirm New Password:</label>
+                </td>
+                <td>
+                    <input type="password" name="cp" id="cp" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update Password" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+</h1>
+
+
+
+
+If the Login id is authenticated as an admin user, then we should get a different view, admin view (managed by controller) : In the admin view have an option of deleting a user: 
+Link stating “Delete an user”
+Clicking on the link should take us to a page:
+Name: 
+UserName: 
+Password: 
+
+If all parameters match as a record from the table, the data should be deleted in the table.
+Use CRUD_ADO project for deleting from the table.
+
+
+using System;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace CRUD_ADO
+{
+    public class CRUD
+    {
+ 
+        public static Boolean DeleteUser(string name,string uname, string pass )
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-O7LF2JA;Initial Catalog=training;Integrated Security=True");
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("Delete from loginTBL where name=@name and passwd=@pass and uname=@uname", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue ("@uname", uname);
+                cmd.Parameters.AddWithValue("@pass", pass);
+
+
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e) { return false; }
+            return false;
+            
+        }
+
+        public static Boolean chkAuth(string name, string uname, string pass)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-O7LF2JA;Initial Catalog=training;Integrated Security=True");
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("Select * from LoginTBL", con);
+                cmd.CommandType = CommandType.Text;
+
+              
+                SqlDataReader r = cmd.ExecuteReader();
+                while (r.Read())
+                {
+                    if(uname=="admin" && name=="Administrator" && pass== "cSharp")
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception e) { return false; }
+            return false;
+
+
+        }
+
+        public static Boolean chkValidate(string name, string uname, string pass)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-O7LF2JA;Initial Catalog=training;Integrated Security=True");
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO loginTBL (name, uname, passwd) VALUES (@name, @uname, @pass)", con);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@uname", uname);
+                cmd.Parameters.AddWithValue("@pass", pass);
+
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e) { return false; }
+            return false;
+
+        }
+    }
+}
+
+
+*index.cshtml
+
+
+<h1>
+    Enter Your Credential Here:
+    <br /><br />
+</h1>
+<table>
+    <tr>
+        <td colspan="2">
+        <form asp-controller="Login" asp-action="mySite">
+              <h2>
+                    <div>
+                        <label for="name">Enter Name:</label>
+                    </div>
+                    <div>
+                        <input type="text" name="name" id="name" />
+                    </div>
+                    <div>
+                        <label for="uname">Enter UserName:</label>
+                    </div>
+                    <div>
+                        <input type="text" name="uname" id="uname" />
+                    </div>
+                    <div>
+                        <label for="Passwd">Enter Password:</label>
+                    </div>
+                    <div>
+                        <input type="password" name="Passwd" id="Passwd" />
+                    </div>
+                    <div>
+                        <input type="submit" value="Submit" />
+                    </div>
+              </h2>
+            </form>
+        </td>
+    </tr>
+</table>
+
+admin.cshtml
+
+<h1>
+	!! Administration Activity Only !!
+</h1>
+<br />
+<br />
+<h2>
+	<a asp-controller="Login" asp-action="deleteUser">
+		Delete User
+	</a>
+</h2>
+
+
+deleteUser.cshtml
+
+<h1>
+  For Deleting the User enetr the details here :
+</h1>
+<table>
+    <tr>
+        <td colspan="2">
+            <form asp-controller="Login" asp-action="Delete">
+
+                <h2>
+                    <div>
+                        <label for="name">Name:</label>
+                    </div>
+                    <div>
+                        <input type="text" name="name" id="name" />
+                    </div>
+                    <div>
+                        <label for="uname">UserName:</label>
+                    </div>
+                    <div>
+                        <input type="text" name="uname" id="uname" />
+                    </div>
+                    <div>
+                        <label for="passwd">Password:</label>
+                    </div>
+                    <div>
+                        <input type="password" name="passwd" id="passwd" />
+                    </div>
+                    <div>
+                        <input type="submit" value="Delete User" />
+                    </div>
+                </h2>
+            </form>
+        </td>
+    </tr>
+</table>
+
+
+controller
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace Day29MVC.Controllers
+{
+    public class LoginController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
+
+        public IActionResult mySite(string name, string uname, string passwd)
+        {
+            if (CRUD_ADO.CRUD.chkValidate(name, uname,passwd))
+            {
+                if (CRUD_ADO.CRUD.chkAuth(name,uname,passwd))
+                {
+                    return RedirectToAction("Admin");
+                }
+                return RedirectToAction("Success");
+            }
+            return RedirectToAction("Failure");
+
+        }
+
+        public IActionResult Delete(string name, string uname, string passwd)
+        {
+            if (CRUD_ADO.CRUD.DeleteUser(name, uname, passwd))
+            {
+                return RedirectToAction("Success");
+            }
+            return RedirectToAction("Failure");
+
+        }
+
+
+
+        public IActionResult Success()
+        {
+            return View();
+        }
+
+        public IActionResult Failure()
+        {
+            return View();
+        }
+
+        public IActionResult deleteUser()
+        {
+            return View();
+        }
+
+
+    }
+}
+
