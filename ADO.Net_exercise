@@ -383,21 +383,14 @@ namespace CRUD_ADO
                 SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-O7LF2JA;Initial Catalog=training;Integrated Security=True");
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO loginTBL (name, uname, passwd) VALUES (@name, @uname, @pass)", con);
+                SqlCommand cmd = new SqlCommand("Select * from LoginTBL", con);
                 cmd.CommandType = CommandType.Text;
 
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@uname", uname);
-                cmd.Parameters.AddWithValue("@pass", pass);
 
-                int r = cmd.ExecuteNonQuery();
-                if (r > 0)
+                SqlDataReader r = cmd.ExecuteReader();
+                while (r.Read())
                 {
                     return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
             catch (Exception e) { return false; }
