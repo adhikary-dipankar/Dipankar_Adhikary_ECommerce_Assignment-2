@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-1-->
+<!--XML document about a Library-->
+
+<library>
+    <book>
+        <title>The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <publishedYear>1925</publishedYear>
+        <genre>Fiction</genre>
+        <ISBN>978-0-7432-7356-5</ISBN>
+    </book>
+    <book>
+        <title>To Kill a Mockingbird</title>
+        <author>Harper Lee</author>
+        <publishedYear>1960</publishedYear>
+        <genre>Fiction</genre>
+        <ISBN>978-0-06-112008-4</ISBN>
+    </book>
+</library>
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-2-->
+<library>
+
+    <book>
+        <title>"The Great Gatsby"</title>
+        <author>Lee John</author><!-- Not Using an entity reference will give an error -->
+        <publishedYear>1925</publishedYear>
+        <genre>Fiction</genre>
+        <ISBN>978-0-7432-7356-5</ISBN>
+    </book>
+
+    <book>
+        <title>&quot;The Great Gatsby&quot;</title>
+        <author>Lee &amp; John</author> <!-- Using an entity reference -->
+        <publishedYear>1925</publishedYear>
+        <genre>&apos;Fiction&apos;</genre>
+        <ISBN>978-0-7432-7356-5</ISBN>
+    </book>
+
+
+    <!-- This is a valid comment -->
+    <!--
+    This is an example of multi-line comment.
+    It can span multiple lines.
+    -->
+
+    <!-- This is an invalid comment with a double-dash inside -->
+
+</library>
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-3-->
+
+<students>
+    <!-- Student with attributes -->
+    <student id="1" grade="A">
+        <name>John Doe</name>
+        <age>20</age>
+    </student>
+
+    <!-- Student without attributes -->
+    <student>
+        <name>Jane Smith</name>
+        <age>22</age>
+        <id>1</id>
+        <grade>A</grade>
+    </student>
+</students>
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-4-->
+
+<library xmlns:lib="http://www.library-ex-4.com/library"
+         xmlns:book="http://www.library-ex-4.com/books">
+
+    <lib:libraryInfo>
+        <lib:name>Central Library</lib:name>
+        <lib:location>New York</lib:location>
+    </lib:libraryInfo>
+
+    <book:book>
+        <book:title>The Great Gatsby</book:title>
+        <book:author>F. Scott Fitzgerald</book:author>
+        <book:publishedYear>1925</book:publishedYear>
+        <book:genre>Fiction</book:genre>
+        <book:ISBN>978-0-7432-7356-5</book:ISBN>
+    </book:book>
+
+    <book:book>
+        <book:title>To Kill a Mockingbird</book:title>
+        <book:author>Harper Lee</book:author>
+        <book:publishedYear>1960</book:publishedYear>
+        <book:genre>Fiction</book:genre>
+        <book:ISBN>978-0-06-112008-4</book:ISBN>
+    </book:book>
+
+</library>
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-5-->
+
+<?xml-stylesheet type="text/xsl" href="Ex_5_style.xsl"?>
+<library>
+    <book>
+        <title>The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <publishedYear>1925</publishedYear>
+        <genre>Fiction</genre>
+        <ISBN>978-0-7432-7356-5</ISBN>
+    </book>
+    <book>
+        <title>To Kill a Mockingbird</title>
+        <author>Harper Lee</author>
+        <publishedYear>1960</publishedYear>
+        <genre>Fiction</genre>
+        <ISBN>978-0-06-112008-4</ISBN>
+    </book>
+</library>
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-5 XSLT File-->
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:template match="/">
+        <html>
+            <head>
+                <title>Library Books</title>
+            </head>
+            <body>
+                <h1>Library Books</h1>
+                <table border="1">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Published Year</th>
+                        <th>Genre</th>
+                        <th>ISBN</th>
+                    </tr>
+                    <xsl:for-each select="library/book">
+                        <tr>
+                            <td><xsl:value-of select="title"/></td>
+                            <td><xsl:value-of select="author"/></td>
+                            <td><xsl:value-of select="publishedYear"/></td>
+                            <td><xsl:value-of select="genre"/></td>
+                            <td><xsl:value-of select="ISBN"/></td>
+                        </tr>
+                    </xsl:for-each>
+                </table>
+            </body>
+        </html>
+    </xsl:template>
+</xsl:stylesheet>
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-6-->
+
+<library>
+    <book id="1">
+        <title>The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <publishedYear>1925</publishedYear>
+        <genre>Fiction</genre>
+        <ISBN>978-0-7432-7356-5</ISBN>
+    </book>
+    <book id="2">
+        <title>To Kill a Mockingbird</title>
+        <author>Harper Lee</author>
+        <publishedYear>1960</publishedYear>
+        <genre>Fiction</genre>
+        <ISBN>978-0-06-112008-4</ISBN>
+    </book>
+	 
+    <!--
+	 
+        for $book in /library/book 
+        return $book/title
+
+        Result:
+        The Great Gatsby
+        To Kill a Mockingbird
+
+        for $book in /library/book[genre = 'Fiction']
+        return $book/author
+
+        Result:
+        Harper Lee
+
+        for $book in /library/book[publishedYear < 1960] 
+        return $book
+		  
+    -->
+
+
+    <!-- save the query as query.xq and then execute in Terminal
+	 
+        
+    for $book in doc("Ex_6.xml")//book
+    return $book/title/text()
+
+    Result:
+
+    The Great Gatsby
+    To Kill a Mockingbird
+	 
+    -->
+
+</library>
+
+
+
+
+
+
+
+
+
+
+<!--Example-7-->
+
+using System;
+using System.IO;
+using System.Xml.Serialization;
+
+// Define a Student class to represent the data
+[Serializable]
+public class Student
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create a new student
+        Student student = new Student{Name = "Bumrah",Age = 28};
+
+        // Serialize the student object to XML
+
+        XmlSerializer serializer = new XmlSerializer(typeof(Student));
+        using (TextWriter writer = new StreamWriter("student.xml"))
+        {
+            serializer.Serialize(writer, student);
+        }
+
+        Console.WriteLine("Student object serialized to student.xml");
+
+        // Deserialize the XML back to a student object
+
+        using (TextReader reader = new StreamReader("student.xml"))
+        {
+            var deserializedStudent = (Student)serializer.Deserialize(reader);
+            Console.WriteLine($"Deserialized Student - Student Name: {deserializedStudent.Name}, Age: {deserializedStudent.Age}");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
