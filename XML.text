@@ -233,8 +233,13 @@
 
 
 
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Example-6-->
 
-
+<!-- save the query as query.xq and then execute in Terminal-->
+    
+for $book in doc("Ex_6.xml")//book
+return $book/title/text()
 
 
 
@@ -243,43 +248,80 @@
 <!--Example-7-->
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-// Define a Student class to represent the data
-[Serializable]
-public class Student
+namespace SerializationXML
 {
-    public string Name { get; set; }
-    public int Age { get; set; }
-}
-
-class Program
-{
-    static void Main(string[] args)
+    // Define a Student class to represent the data
+    [Serializable]
+    public class Student
     {
-        // Create a new student
-        Student student = new Student{Name = "Bumrah",Age = 28};
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Course { get; set; }
+        public decimal Fees { get; set; }
+        public int Duration { get; set; }
+        public int AdmissionYear { get; set; }
 
-        // Serialize the student object to XML
-
-        XmlSerializer serializer = new XmlSerializer(typeof(Student));
-        using (TextWriter writer = new StreamWriter("student.xml"))
+        public Student(string name, int age, string course, decimal fees, int duration, int admissionYear)
         {
-            serializer.Serialize(writer, student);
+            this.Name = name;
+            this.Age = age;
+            this.Course = course;
+            this.Fees = fees;
+            this.Duration = duration;
+            this.AdmissionYear = admissionYear;
         }
 
-        Console.WriteLine("Student object serialized to student.xml");
+        public Student() { }
+    }
 
-        // Deserialize the XML back to a student object
-
-        using (TextReader reader = new StreamReader("student.xml"))
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            var deserializedStudent = (Student)serializer.Deserialize(reader);
-            Console.WriteLine($"Deserialized Student - Student Name: {deserializedStudent.Name}, Age: {deserializedStudent.Age}");
+            // Create a new list of students with additional data
+            List<Student> students = new List<Student>
+            {
+                new Student("Virat Kohli", 30, "Computer Science", 5000.0M, 4, 2019),
+                new Student("Steve Smith", 25, "Mathematics", 4500.0M, 3, 2020),
+                new Student("Ms Dhoni", 30, "Chemistry", 5000.0M, 4, 2021),
+                new Student("Rohit Sharma", 25, "Physics", 4500.0M, 3, 2018),
+                new Student("Joe Root", 30, "Quantum Computing", 5000.0M, 4, 2017),
+                new Student("Ben Stokes", 25, "Cloud Computing", 4500.0M, 3, 2022),
+
+            };
+
+            // Serialize the student list to XML
+            XmlSerializer s = new XmlSerializer(typeof(List<Student>));
+            using (TextWriter writer = new StreamWriter("students.xml"))
+            {
+                s.Serialize(writer, students);
+            }
+
+            Console.WriteLine("Student objects serialized to students.xml\n");
+
+            //Console.WriteLine("Student objects deserialized to students.xml\n");
+
+            //// Deserialize the XML data back into a list of Student objects
+            //List<Student> deserializedStudents;
+            //XmlSerializer ds = new XmlSerializer(typeof(List<Student>));
+            //using (TextReader reader = new StreamReader("students.xml"))
+            //{
+            //    deserializedStudents = (List<Student>)ds.Deserialize(reader);
+            //}
+
+            //// Print the deserialized student data
+            //foreach (var student in deserializedStudents)
+            //{
+            //    Console.WriteLine($"Student Name: {student.Name}, \nAge: {student.Age}, \nCourse: {student.Course}, \nFees: {student.Fees}, \nDuration: {student.Duration}, \nAdmissionYear: {student.AdmissionYear}\n");
+            //}
         }
     }
 }
+
 
 
 
