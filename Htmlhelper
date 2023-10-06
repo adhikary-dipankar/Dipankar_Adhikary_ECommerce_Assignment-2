@@ -1,0 +1,1 @@
+Save button in htmlhelper2 submits to the controller an employeeClass object, and sends the same object to htmlhelper3 to display it
